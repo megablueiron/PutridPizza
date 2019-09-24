@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Michael Botros
+ * September 24th, 2019
+ * This program prompts the user for a desired pizza diameter. It then calculates the costs and displays it and shows a tiny message depending on the pizza size.
  */
 
 /**
@@ -37,8 +37,10 @@ public class putridPizzaFrame extends javax.swing.JFrame {
         lblTaxes = new javax.swing.JLabel();
         lblGrandTotal = new javax.swing.JLabel();
         lblSubtotalResult = new javax.swing.JLabel();
-        lblTaxesResult = new javax.swing.JLabel();
         lblGrandTotalResult = new javax.swing.JLabel();
+        lblTaxesResult = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
+        lblResultPhrase = new javax.swing.JLabel();
 
         lblTitle1.setFont(new java.awt.Font("Rafika", 0, 24)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(0, 102, 0));
@@ -62,6 +64,11 @@ public class putridPizzaFrame extends javax.swing.JFrame {
         btnCalculate.setForeground(new java.awt.Color(255, 51, 51));
         btnCalculate.setText("Calculate");
         btnCalculate.setToolTipText("");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Rafika", 0, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(0, 102, 0));
@@ -82,40 +89,50 @@ public class putridPizzaFrame extends javax.swing.JFrame {
         lblSubtotalResult.setFont(new java.awt.Font("Rafika", 0, 14)); // NOI18N
         lblSubtotalResult.setForeground(new java.awt.Color(255, 51, 51));
 
+        lblGrandTotalResult.setFont(new java.awt.Font("Rafika", 0, 14)); // NOI18N
+        lblGrandTotalResult.setForeground(new java.awt.Color(255, 51, 51));
+
         lblTaxesResult.setFont(new java.awt.Font("Rafika", 0, 14)); // NOI18N
         lblTaxesResult.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblGrandTotalResult.setFont(new java.awt.Font("Rafika", 0, 14)); // NOI18N
-        lblGrandTotalResult.setForeground(new java.awt.Color(255, 51, 51));
+        lblImage.setIcon(new javax.swing.ImageIcon("Y:\\BFV36537_CC2017_2IngredintDough4Ways-FB.jpg")); // NOI18N
+
+        lblResultPhrase.setFont(new java.awt.Font("Rafika", 0, 10)); // NOI18N
+        lblResultPhrase.setForeground(new java.awt.Color(0, 102, 0));
 
         javax.swing.GroupLayout pizzaPanelLayout = new javax.swing.GroupLayout(pizzaPanel);
         pizzaPanel.setLayout(pizzaPanelLayout);
         pizzaPanelLayout.setHorizontalGroup(
             pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pizzaPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pizzaPanelLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pizzaPanelLayout.createSequentialGroup()
-                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTaxes)
-                            .addComponent(lblSubtotal)
-                            .addComponent(lblGrandTotal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSubtotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTaxesResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrandTotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCalculate))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pizzaPanelLayout.createSequentialGroup()
                         .addComponent(lblTitle)
-                        .addGap(36, 36, 36))))
+                        .addGap(36, 36, 36))
+                    .addGroup(pizzaPanelLayout.createSequentialGroup()
+                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblResultPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pizzaPanelLayout.createSequentialGroup()
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTaxes)
+                                    .addComponent(lblSubtotal)
+                                    .addComponent(lblGrandTotal))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSubtotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblGrandTotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTaxesResult, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCalculate))))
+                        .addContainerGap(29, Short.MAX_VALUE))))
             .addGroup(pizzaPanelLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(lblDiameter)
                 .addGap(18, 18, 18)
                 .addComponent(txtDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pizzaPanelLayout.setVerticalGroup(
             pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,19 +144,24 @@ public class putridPizzaFrame extends javax.swing.JFrame {
                     .addComponent(lblDiameter)
                     .addComponent(txtDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblSubtotal)
-                    .addComponent(lblSubtotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTaxes, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblGrandTotalResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pizzaPanelLayout.createSequentialGroup()
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSubtotal)
+                            .addComponent(lblSubtotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTaxes)
+                            .addComponent(lblTaxesResult, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblGrandTotal)
+                            .addComponent(lblGrandTotalResult, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblGrandTotal, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTaxesResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblResultPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -158,6 +180,67 @@ public class putridPizzaFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        
+        //declaring all constants and variables
+        final double DIAMETER1 = 15;
+        final double DIAMETER2 = 20;
+        final double DIAMETER3 = 40;
+        final double PIZZA_LABOR = 0.75;
+        final double PIZZA_RENT = 0.99;
+        final double DIAMETER_RATE = 0.50;
+        final double TAX_RATE = 0.13;
+        double taxes;
+        double subtotal;
+        double grandTotal;
+        
+        //fetching pizza diameter from the text box in the GUI.
+        double diameter = Double.parseDouble(txtDiameter.getText());
+        
+        //The following statements use comparison operators to determine which message will be displayed depending on the pizza diameter.
+        if (diameter >=1 && diameter <= DIAMETER1){
+            
+            lblResultPhrase.setText("We are going to make you a cute little pizza!");
+            
+        } else if (diameter > DIAMETER1 && diameter <= DIAMETER2) {
+            
+            lblResultPhrase.setText("You've discovered an easter egg!");
+            
+        } else if (diameter > DIAMETER2 && diameter <= DIAMETER3) {
+            
+            lblResultPhrase.setText("This will be delicious!");
+            
+        } else if (diameter > DIAMETER3) {
+            
+            lblResultPhrase.setText("Whoa, big pizza! You might need a truck to get this home!");
+            
+        }
+        
+        //calculating the cost to make the pizza
+        subtotal = PIZZA_LABOR + PIZZA_RENT + (diameter * DIAMETER_RATE);
+        taxes = subtotal * TAX_RATE;
+        grandTotal = taxes + subtotal;
+        
+        //rounding all the final values to be displayed
+        subtotal = subtotal * 100;
+        subtotal = Math.round(subtotal);
+        subtotal = subtotal/100;
+        
+        taxes = taxes * 100;
+        taxes = Math.round(taxes);
+        taxes = taxes/100;
+        
+        grandTotal = grandTotal * 100;
+        grandTotal = Math.round(grandTotal);
+        grandTotal = grandTotal/100;
+        
+        //displaying the costs to the user through the GUI
+        lblGrandTotalResult.setText(grandTotal + "$");
+        lblSubtotalResult.setText(subtotal + "$");
+        lblTaxesResult.setText(taxes + "$");
+        
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +282,8 @@ public class putridPizzaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblDiameter;
     private javax.swing.JLabel lblGrandTotal;
     private javax.swing.JLabel lblGrandTotalResult;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblResultPhrase;
     private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblSubtotalResult;
     private javax.swing.JLabel lblTaxes;
